@@ -31,7 +31,27 @@ def prim(graph):
 	nodes[0].distance = 0 
 
 	while not nodes:
-		
+		curr_node = nodes.pop(0)
+
+		for edge in graph:
+			found = False
+			if edge.node1 == curr_node.node:
+				next_node = edge.node2
+				found = True
+			else if edge.node2 == curr_node.node:
+				next_node = edge.node1
+				found = True
+
+			if found:
+				new_distance = edge.distance
+
+
+			
+			for x in test_list:
+			    if x.value == value:
+			        print "i found it!"
+			        break			
+
 
 	nodes = sorted(nodes, key=operator.attrgetter('distance'))
 
