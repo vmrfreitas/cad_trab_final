@@ -4,8 +4,8 @@ Trabalho final da disciplina de CAD - UFRGS
 
 ### Undirected Weighted Graph
 
-Abaixo se encontra uma visualização do exemplo utilizado para verificar a corretude dos algoritmos
-Em vermelho está a árvore de extensão mínima para o determinado exemplo.
+Abaixo se encontra uma visualização do exemplo utilizado para verificar a corretude dos algoritmos.  
+Em vermelho está a árvore de extensão mínima para o determinado exemplo.  
 
 
 ```
