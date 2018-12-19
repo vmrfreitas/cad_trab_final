@@ -1,13 +1,11 @@
 // undirected weighted graph
 // format-> (node1) (node2) (distance)
-A B 2
-A C 3
+A B 1
 A D 3
-B C 4
-B E 3
-C E 1
-C D 5
-C F 6
-D F 7
-E F 8
-F G 9
+B D 5
+B C 6
+B E 1
+C E 5
+C F 2
+D E 1
+E F 4
