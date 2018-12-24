@@ -23,6 +23,23 @@ D F 7
 E F 8
 F G 9
 ```
-
-
 ![image](/graph/graph_undirected.png)
+
+### Directed Weighted Graph
+
+```
+// directed weighted graph https://www.youtube.com/watch?v=Lfb8qkXzHY0
+// format-> (node1) (node2) (distance)
+A F
+A B 2
+A C 4
+B C 1
+B D 4
+B E 2
+C E 3
+D F 2
+E D 3
+E F 2
+```
+
+![image](/graph/graph_directed.png)
