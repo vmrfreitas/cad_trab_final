@@ -10,52 +10,52 @@ def cria_aresta(origem, destino, distancia=1):
 
 
 class Grafo:
-    def __init__(self, arestas):
+	def __init__(self, arestas):
 
-        self.arestas = [cria_aresta(*aresta) for aresta in arestas]
-        self.vertices =  set(sum(([aresta.origem, aresta.destino] for aresta in self.arestas), []))
+		self.arestas = [cria_aresta(*aresta) for aresta in arestas]
+		self.vertices =  set(sum(([aresta.origem, aresta.destino] for aresta in self.arestas), []))
 
-        vizinhos = {vertice: set() for vertice in self.vertices}
-        for aresta in self.arestas:
-        	vizinhos[aresta.origem].add((aresta.destino, aresta.distancia))
-       	self.vizinhos = vizinhos 
+		vizinhos = {vertice: set() for vertice in self.vertices}
+		for aresta in self.arestas:
+			vizinhos[aresta.origem].add((aresta.destino, aresta.distancia))
+		self.vizinhos = vizinhos 
 
 
-    def dijkstra(self, origem, dest):
-        
-        distancias = {vertice: inf for vertice in self.vertices}
-        anterior = {vertice: None for vertice in self.vertices}
-        
+	def dijkstra(self, origem, dest):
+		
+		distancias = {vertice: inf for vertice in self.vertices}
+		anterior = {vertice: None for vertice in self.vertices}
+		
 
-        distancias[origem] = 0
-        vertices = self.vertices.copy()
+		distancias[origem] = 0
+		vertices = self.vertices.copy()
 
-        while vertices:
+		while vertices:
 
-            vert_atual = min(
-                vertices, key=lambda vertice: distancias[vertice])
-            vertices.remove(vert_atual)
+			vert_atual = min(
+				vertices, key=lambda vertice: distancias[vertice])
+			vertices.remove(vert_atual)
 
-            if distancias[vert_atual] == inf:
-                break
+			if distancias[vert_atual] == inf:
+				break
 
-            for vizinho, distancia in self.vizinhos[vert_atual]:
-                outra_rota = distancias[vert_atual] + distancia
+			for vizinho, distancia in self.vizinhos[vert_atual]:
+				outra_rota = distancias[vert_atual] + distancia
 
-                if outra_rota < distancias[vizinho]:
-                    distancias[vizinho] = outra_rota
-                    anterior[vizinho] = vert_atual
+				if outra_rota < distancias[vizinho]:
+					distancias[vizinho] = outra_rota
+					anterior[vizinho] = vert_atual
 
-        caminho, vert_atual = deque(), dest
+		caminho, vert_atual = deque(), dest
 
-        while anterior[vert_atual] is not None:
-            caminho.appendleft(vert_atual)
-            vert_atual = anterior[vert_atual]
+		while anterior[vert_atual] is not None:
+			caminho.appendleft(vert_atual)
+			vert_atual = anterior[vert_atual]
 
-        if caminho:
-            caminho.appendleft(vert_atual)
+		if caminho:
+			caminho.appendleft(vert_atual)
 
-        return caminho, distancias[dest]
+		return caminho, distancias[dest]
 
 
 f = open("../graph/graph_directed.txt","r")
@@ -66,7 +66,8 @@ primeira = True
 for linha in f:
 	if primeira:
 		if not re.match("//", linha):
-			origem, destino = linha.split(" ")
+			origem_caminho, destino_caminho = linha.split(" ")
+			destino_caminho = destino_caminho.rstrip()
 			primeira = False
 
 	elif not re.match("//", linha):
@@ -77,7 +78,7 @@ for linha in f:
 
 grafo_montado = Grafo(grafo)
 
-caminho, distancia = grafo_montado.dijkstra("A", "F")
+caminho, distancia = grafo_montado.dijkstra(origem_caminho, destino_caminho)
 
 print("O caminho mínimo é:")
 for elemento in caminho:
